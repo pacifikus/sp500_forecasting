@@ -1,0 +1,11 @@
+pandas
+numpy
+yfinance
+yahoo_fin
+tqdm
+sklearn
+statsmodels
+xgboost
+matplotlib
+seaborn
+giotto-tda

@@ -1,14 +1,14 @@
 import os
+import os.path
+
+import mlflow
+import pandas as pd
 import yaml
+
+from src.evaluation import evaluate_model
 from src.get_data import get_ticker_list, get_tickers_data
 from src.preprocessing import timeseries_train_test_split, make_stationary_series, compute_lags
-from src.evaluation import evaluate_model
 from src.tda import train_rf_on_tda, transform_data_to_tda
-import mlflow
-import os.path
-import pandas as pd
-import uuid
-
 
 config_path = os.path.join('config/config.yaml')
 config = yaml.safe_load(open(config_path))['train']
@@ -28,7 +28,7 @@ if __name__ == '__main__':
     grouped = data.groupby('symbol')
     for key, group in grouped:
         df = group.drop(
-            ['symbol', 'shortName', 'sector', 'industry', 'country'],
+            config['data']['info_keys'],
             axis=1
         ).dropna()
 
@@ -53,6 +53,4 @@ if __name__ == '__main__':
             mlflow.log_param('window_size', params['window_size'])
             mlflow.log_param('stride', params['stride'])
             mlflow.log_metric("mape", mape)
-            mlflow.sklearn.save_model(model, f"data/models/rf/{key}_{uuid.uuid4()}")
-
-            #tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
+            mlflow.sklearn.save_model(model, f"data/models/rf/{key}")

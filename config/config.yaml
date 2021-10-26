@@ -1,0 +1,19 @@
+train:
+  seed: 8
+  data:
+    data_path: data/raw/data.csv
+    period: 1y
+    info_keys:
+      - symbol
+      - shortName
+      - sector
+      - industry
+      - country
+  need_plot: True
+  tda:
+    sliding:
+      window_size: 5
+      stride: 2
+    embedder:
+      dimension: 5
+      delay: 2

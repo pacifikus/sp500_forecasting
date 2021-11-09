@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import uuid
 
 
 def plot_evaluation_results(y_pred, y_test, error_value, cross_validation, postfix):
@@ -19,8 +18,8 @@ def plot_evaluation_results(y_pred, y_test, error_value, cross_validation, postf
     plt.plot(upper, "r--", alpha=0.5)
 
     anomalies = np.array([np.NaN] * len(y_test))
-    anomalies[y_test<lower] = y_test[y_test < lower]
-    anomalies[y_test>upper] = y_test[y_test > upper]
+    anomalies[y_test < lower] = y_test[y_test < lower]
+    anomalies[y_test > upper] = y_test[y_test > upper]
     plt.plot(anomalies, "o", markersize=10, label="Anomalies")
 
     plt.title("Mean absolute percentage error {0:.2f}%".format(error_value))

@@ -37,7 +37,6 @@ class PredictionTask(luigi.Task):
                 config['data']['info_keys'],
                 axis=1
             ).dropna()
-            #df = df.iloc[:, :-1]
             df = make_stationary_series(df)
             df.loc[df.shape[0]] = [0, 0, 0]
             df = compute_lags(df).dropna()

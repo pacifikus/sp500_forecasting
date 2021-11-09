@@ -1,5 +1,4 @@
 import numpy as np
-import statsmodels.api as sm
 
 
 def make_stationary_series(series, target_col='price'):

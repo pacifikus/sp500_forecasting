@@ -19,5 +19,11 @@ def evaluate_model(model, X_train, y_train, X_test, y_test, postfix, need_plot=F
             cv=tscv,
             scoring="neg_mean_absolute_error"
         )
-        plot_evaluation_results(y_pred, y_test, error_value=mape, cross_validation=cv, postfix=postfix)
+        plot_evaluation_results(
+            y_pred,
+            y_test,
+            error_value=mape,
+            cross_validation=cv,
+            postfix=postfix
+        )
     return mape

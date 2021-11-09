@@ -39,3 +39,6 @@ def get_tickers_data(tickers, period, info_keys):
     data = pd.DataFrame(data)
     data.dropna(axis=1, how='all', inplace=True)
     return data
+
+
+get_tickers_data(['CMG', 'TFC', 'ODFL', 'KSU', 'CNP'], '1y', ['shortName'])

@@ -2,6 +2,11 @@ train:
   seed: 8
   data:
     data_path: data/raw/data.csv
+    sliding_path: data/models/sliding
+    embedder_path: data/models/embedder
+    persistence_path: data/models/vr_persistence
+    entropy_path: data/models/p_entropy
+    prediction_path: data/prediction.csv
     period: 1y
     info_keys:
       - symbol
@@ -13,13 +18,17 @@ train:
     embedder:
       dimension: 5
       delay: 2
+  mlflow:
+    tracking_uri: http://localhost:5000
 predict:
   seed: 8
   data:
-    period: 2mo
+    period: 3mo
     info_keys:
       - symbol
       - shortName
       - sector
       - industry
       - country
+  mlflow:
+    tracking_uri: http://localhost:5000

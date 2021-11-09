@@ -1,0 +1,36 @@
+version: "2.4"
+
+networks:
+    tda:
+        external:
+            name: tda
+
+services:
+    luigid:
+      image: akursar/luigid
+      container_name: luigid_tda
+      ports:
+        - "8082:8082"
+      networks:
+        - tda
+    pushgateway:
+      image: prom/pushgateway:latest
+      container_name: pushgateway_tda
+      ports:
+        - "9091:9091"
+      networks:
+        - tda
+    prometheus:
+      image: prometheus_simple:latest
+      container_name: prometheus_tda
+      ports:
+        - "9090:9090"
+      networks:
+        - tda
+    grafana:
+      image: grafana/grafana:latest
+      container_name: grafana_tda
+      ports:
+        - "3000:3000"
+      networks:
+        - tda
